@@ -25,22 +25,22 @@ const WRITE_MESSAGE = 'WRITE_MESSAGE';
 export function updateName (name) {
   const action = { type: UPDATE_NAME, name };
   return action;
-};
+}
 
 export function getMessage (message) {
   const action = { type: GET_MESSAGE, message };
   return action;
-};
+}
 
 export function getMessages (messages) {
   const action = { type: GET_MESSAGES, messages };
   return action;
-};
+}
 
 export function writeMessage (content) {
   const action = { type: WRITE_MESSAGE, content };
   return action;
-};
+}
 
 // THUNK CREATORS
 
