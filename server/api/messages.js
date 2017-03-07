@@ -22,16 +22,20 @@ router.post('/', function (req, res, next) {
     }
   })
   .spread(author => {
-    delete req.body.name;
-    req.body.authorId = author.id;
-
-    return Message.create(req.body)
+    const message = Message.build(req.body);
+    message.setAuthor(author, { save: false });
+    return message.save()
       .then(message => {
-        res.json(message);
-      })
-      .catch(next);
+        message = message.toJSON();
+        message.author = author;
+        return message;
+      });
+  })
+  .then(message => {
+    res.json(message);
+  })
+  .catch(next);
 
-  });
 });
 
 // PUT /api/messages
