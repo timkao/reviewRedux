@@ -2,6 +2,7 @@ import axios from 'axios';
 import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import socket from './socket';
 
 // INITIAL STATE
@@ -75,10 +76,10 @@ function reducer (state = initialState, action) {
 
 const store = createStore(
   reducer,
-  applyMiddleware(
+  composeWithDevTools(applyMiddleware(
     thunkMiddleware,
     createLogger()
-  )
+  ))
 );
 
 export default store;
