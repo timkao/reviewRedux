@@ -22,20 +22,52 @@ const WRITE_MESSAGE = 'WRITE_MESSAGE';
 
 // ACTION CREATORS
 
-export const updateName = name => ({ type: UPDATE_NAME, name });
-export const getMessage = message => ({ type: GET_MESSAGE, message });
-export const getMessages = messages => ({ type: GET_MESSAGES, messages });
-export const writeMessage = content => ({ type: WRITE_MESSAGE, content });
+export function updateName (name) {
+  const action = { type: UPDATE_NAME, name };
+  return action;
+};
+
+export function getMessage (message) {
+  const action = { type: GET_MESSAGE, message };
+  return action;
+};
+
+export function getMessages (messages) {
+  const action = { type: GET_MESSAGES, messages };
+  return action;
+};
+
+export function writeMessage (content) {
+  const action = { type: WRITE_MESSAGE, content };
+  return action;
+};
 
 // THUNK CREATORS
 
-export const postMessage = message => dispatch => {
-  return axios.post('/api/messages', message)
-    .then(res => res.data)
-    .then(newMessage => {
-      dispatch(getMessage(newMessage));
-      socket.emit('new-message', newMessage);
-    });
+export function fetchMessages () {
+
+  return function thunk (dispatch) {
+    return axios.get('/api/messages')
+      .then(res => res.data)
+      .then(messages => {
+        const action = getMessages(messages);
+        dispatch(action);
+      });
+  }
+}
+
+export function postMessage (message) {
+
+  return function thunk (dispatch) {
+    return axios.post('/api/messages', message)
+      .then(res => res.data)
+      .then(newMessage => {
+        const action = getMessage(newMessage);
+        dispatch(action);
+        socket.emit('new-message', newMessage);
+      });
+  }
+
 }
 
 // REDUCER

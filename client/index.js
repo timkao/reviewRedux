@@ -9,12 +9,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, IndexRedirect } from 'react-router';
 import { Main, MessagesList, NewChannelEntry } from './components';
-import store, { getMessages } from './store';
+import store, { fetchMessages } from './store';
 
-const onMainEnter = () => {
-  axios.get('api/messages')
-    .then(res => res.data)
-    .then(messages => store.dispatch(getMessages(messages)))
+function onMainEnter () {
+  const thunk = fetchMessages();
+  store.dispatch(thunk);
 };
 
 ReactDOM.render(
