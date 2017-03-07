@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
+import store, { postMessage, writeMessage } from '../store';
 
 export default class NewMessageEntry extends Component {
 
   constructor () {
     super();
-    this.state = { content: '' };
+    this.state = store.getState();
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount () {
+    this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
+  }
+
+  componentWillUnmount () {
+    this.unsubscribe();
+  }
+
   handleChange (evt) {
-    this.setState({ content: evt.target.value });
+    store.dispatch(writeMessage(evt.target.value))
   }
 
   handleSubmit (evt) {
     evt.preventDefault();
-    console.log('TODO: send this message: ', this.state.content);
-    this.setState({ content: '' });
+
+    const { name, messageContent } = store.getState();
+    const content = messageContent;
+    const { channelId } = this.props;
+
+    store.dispatch(postMessage({ name, content, channelId }));
+    store.dispatch(writeMessage(''));
   }
 
   render () {
@@ -28,7 +42,7 @@ export default class NewMessageEntry extends Component {
             className="form-control"
             type="text"
             name="content"
-            value={this.state.content}
+            value={this.state.messageContent}
             onChange={this.handleChange}
             placeholder="Say something nice..."
           />

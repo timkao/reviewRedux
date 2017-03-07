@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
+import store, { updateName } from '../store';
 
 export default class NameEntry extends Component {
 
   constructor () {
     super();
-    this.state = { name: '' };
+    this.state = store.getState();
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount () {
+    this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
+  }
+
+  componentWillUnmount () {
+    this.unsubscribe();
+  }
+
   handleChange (evt) {
-    this.setState({ name: evt.target.value });
+    store.dispatch(updateName(evt.target.value));
   }
 
   render () {
@@ -21,6 +30,7 @@ export default class NameEntry extends Component {
           placeholder="Enter your name"
           className="form-control"
           onChange={this.handleChange}
+          value={this.state.name}
         />
       </form>
     );
