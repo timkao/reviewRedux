@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class NewMessage extends Component {
+export default class NewMessageEntry extends Component {
 
   constructor () {
     super();

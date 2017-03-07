@@ -3,7 +3,7 @@ import Message from './Message';
 import NewMessageEntry from './NewMessageEntry';
 import axios from 'axios';
 
-export default class Messages extends Component {
+export default class MessagesList extends Component {
 
   constructor () {
     super();

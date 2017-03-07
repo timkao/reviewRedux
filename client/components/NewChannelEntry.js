@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class NewChannel extends Component {
+export default class NewChannelEntry extends Component {
 
   render () {
     return (
