@@ -10,7 +10,7 @@ import socket from './socket';
 const initialState = {
   messages: [],
   name: 'Reggie',
-  messageContent: ''
+  newMessageEntry: ''
 };
 
 // ACTION TYPES
@@ -97,7 +97,7 @@ function reducer (state = initialState, action) {
     case WRITE_MESSAGE:
       return {
         ...state,
-        messageContent: action.content
+        newMessageEntry: action.content
       };
 
     default:

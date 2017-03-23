@@ -26,8 +26,8 @@ export default class NewMessageEntry extends Component {
   handleSubmit (evt) {
     evt.preventDefault();
 
-    const { name, messageContent } = store.getState();
-    const content = messageContent;
+    const { name, newMessageEntry} = store.getState();
+    const content = newMessageEntry;
     const { channelId } = this.props;
 
     store.dispatch(postMessage({ name, content, channelId }));
@@ -42,7 +42,7 @@ export default class NewMessageEntry extends Component {
             className="form-control"
             type="text"
             name="content"
-            value={this.state.messageContent}
+            value={this.state.newMessageEntry}
             onChange={this.handleChange}
             placeholder="Say something nice..."
           />
