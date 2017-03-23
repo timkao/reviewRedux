@@ -4,11 +4,6 @@
 // Wowzers! Check out the webpack.config.js to see how to add them!
 import './index.scss';
 
-// import store, { fetchMessages } from './store';
-// function onMainEnter () {
-//   const thunk = fetchMessages();
-//   store.dispatch(thunk);
-// };
 import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
