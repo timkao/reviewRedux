@@ -54,6 +54,9 @@ export default class ChannelList extends Component {
             <span className="badge">{ messages.filter(message => message.channelId === 4).length }</span>
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/new-channel">Create a channel...</NavLink>
+        </li>
       </ul>
     );
   }
