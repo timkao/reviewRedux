@@ -23,7 +23,8 @@ export default class NameEntry extends Component {
 
   render () {
     return (
-      <form className="form-group">
+      <form className="form-inline">
+        <label htmlFor="name">Your name:</label>
         <input
           type="text"
           name="name"
