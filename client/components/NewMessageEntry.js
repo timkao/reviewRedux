@@ -26,7 +26,7 @@ export default class NewMessageEntry extends Component {
   handleSubmit (evt) {
     evt.preventDefault();
 
-    const { name, newMessageEntry} = store.getState();
+    const { name, newMessageEntry } = this.state;
     const content = newMessageEntry;
     const { channelId } = this.props;
 
