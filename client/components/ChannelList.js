@@ -61,3 +61,5 @@ export default class ChannelList extends Component {
     );
   }
 }
+
+/** Write your `connect` component below! **/
