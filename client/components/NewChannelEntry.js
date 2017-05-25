@@ -16,3 +16,5 @@ export default class NewChannelEntry extends Component {
     );
   }
 }
+
+/** Write your `connect` component below! **/
