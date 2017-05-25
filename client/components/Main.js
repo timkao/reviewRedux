@@ -9,8 +9,8 @@ import store, { fetchMessages } from '../store';
 export default class Main extends Component {
 
   componentDidMount () {
-    const thunk = fetchMessages();
-    store.dispatch(thunk);
+    const messagesThunk = fetchMessages();
+    store.dispatch(messagesThunk);
   }
 
   render () {
