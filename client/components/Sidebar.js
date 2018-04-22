@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ChannelList from './ChannelList';
 
-export default class Sidebar extends Component {
+function Sidebar(props) {
 
-  render () {
     return (
       <section className="sidebar">
         <div className="sidebar-header">
@@ -17,5 +16,8 @@ export default class Sidebar extends Component {
         <ChannelList />
       </section>
     );
-  }
+
 }
+
+
+export default Sidebar;
